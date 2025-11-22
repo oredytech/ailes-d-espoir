@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Users, GraduationCap, Home as HomeIcon, Video } from "lucide-react";
 import heroImage from "@/assets/hero-children.jpg";
+import heroImage2 from "@/assets/hero-children-2.jpg";
+import heroImage3 from "@/assets/hero-children-3.jpg";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect } from "react";
 
@@ -17,7 +19,7 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [emblaApi]);
 
-  const heroImages = [heroImage, heroImage, heroImage];
+  const heroImages = [heroImage, heroImage2, heroImage3];
   
   const stats = [
     { icon: Users, value: "50+", label: "Enfants accueillis" },
@@ -67,12 +69,12 @@ const Home = () => {
         </div>
         
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="font-heading text-4xl lg:text-6xl xl:text-7xl font-bold mb-6 text-white drop-shadow-lg">
+          <h1 className="font-heading text-4xl lg:text-6xl xl:text-7xl font-bold mb-6 text-white" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.4)' }}>
             Grandir ensemble,
             <br />
-            <span className="text-primary">s'envoler demain</span>
+            <span className="text-primary" style={{ textShadow: '0 4px 12px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.4)' }}>s'envoler demain</span>
           </h1>
-          <p className="text-lg lg:text-xl text-white/95 max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow-md">
+          <p className="text-lg lg:text-xl text-white max-w-2xl mx-auto mb-8 leading-relaxed" style={{ textShadow: '0 3px 8px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.5)' }}>
             L'Orphelinat Papillons offre un refuge, une famille et un avenir aux enfants vulnérables du Nord-Kivu.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
