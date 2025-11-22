@@ -57,6 +57,17 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        warm: {
+          cream: "hsl(var(--warm-cream))",
+          brown: "hsl(var(--warm-brown))",
+        },
+        soft: {
+          green: "hsl(var(--soft-green))",
+        },
+      },
+      fontFamily: {
+        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        heading: ['Outfit', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
