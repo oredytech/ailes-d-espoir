@@ -3,8 +3,22 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Users, GraduationCap, Home as HomeIcon, Video } from "lucide-react";
 import heroImage from "@/assets/hero-children.jpg";
+import useEmblaCarousel from "embla-carousel-react";
+import { useEffect } from "react";
 
 const Home = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  
+  useEffect(() => {
+    if (!emblaApi) return;
+    const interval = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [emblaApi]);
+
+  const heroImages = [heroImage, heroImage, heroImage];
+  
   const stats = [
     { icon: Users, value: "50+", label: "Enfants accueillis" },
     { icon: GraduationCap, value: "100%", label: "Scolarisés" },
@@ -35,25 +49,30 @@ const Home = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+        <div className="absolute inset-0 overflow-hidden" ref={emblaRef}>
+          <div className="flex h-full">
+            {heroImages.map((img, index) => (
+              <div key={index} className="relative flex-[0_0_100%] min-w-0">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: `url(${img})`,
+                  }}
+                >
+                  <div className="absolute bottom-0 left-0 right-0 h-[5%] bg-gradient-to-t from-background to-transparent" />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
         
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <div className="animate-float mb-6">
-            <span className="text-7xl lg:text-8xl">🦋</span>
-          </div>
-          <h1 className="font-heading text-4xl lg:text-6xl xl:text-7xl font-bold mb-6 text-foreground">
+          <h1 className="font-heading text-4xl lg:text-6xl xl:text-7xl font-bold mb-6 text-white drop-shadow-lg">
             Grandir ensemble,
             <br />
             <span className="text-primary">s'envoler demain</span>
           </h1>
-          <p className="text-lg lg:text-xl text-foreground/80 max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="text-lg lg:text-xl text-white/95 max-w-2xl mx-auto mb-8 leading-relaxed drop-shadow-md">
             L'Orphelinat Papillons offre un refuge, une famille et un avenir aux enfants vulnérables du Nord-Kivu.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
