@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Heart, Users, GraduationCap, Home as HomeIcon, Video } from "lucide-react";
+import { Heart, Users, GraduationCap, Home as HomeIcon } from "lucide-react";
+import { FadeIn, SlideUp } from "@/components/AnimatedSection";
 import heroImage from "@/assets/hero-children.jpg";
 import heroImage2 from "@/assets/hero-children-2.jpg";
 import heroImage3 from "@/assets/hero-children-3.jpg";
@@ -107,15 +108,17 @@ const Home = () => {
       <section className="container mx-auto px-4 -mt-16 relative z-20">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {stats.map((stat, index) => (
-            <Card key={index} className="shadow-float hover:shadow-float hover:scale-105 transition-all duration-300">
-              <CardContent className="p-6 text-center">
-                <stat.icon className="w-10 h-10 mx-auto mb-3 text-primary" />
-                <div className="font-heading text-3xl lg:text-4xl font-bold text-primary mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </CardContent>
-            </Card>
+            <FadeIn key={index} delay={index * 0.1}>
+              <Card className="shadow-float hover:shadow-float hover:scale-105 transition-all duration-300">
+                <CardContent className="p-6 text-center">
+                  <stat.icon className="w-10 h-10 mx-auto mb-3 text-primary" />
+                  <div className="font-heading text-3xl lg:text-4xl font-bold text-primary mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </CardContent>
+              </Card>
+            </FadeIn>
           ))}
         </div>
       </section>
@@ -123,48 +126,56 @@ const Home = () => {
       {/* Mission Section */}
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="font-heading text-3xl lg:text-5xl font-bold mb-6">
-            Notre mission
-          </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed mb-8">
-            Créer un lieu où les enfants blessés par la vie peuvent retrouver leurs ailes. 
-            Un lieu qui ne guérit pas tout… mais qui donne le temps, l'amour et le souffle.
-          </p>
-          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-soft">
-            <img 
-              src={missionImage} 
-              alt="Enfants partageant un repas ensemble à l'orphelinat" 
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <SlideUp>
+            <h2 className="font-heading text-3xl lg:text-5xl font-bold mb-6">
+              Notre mission
+            </h2>
+            <p className="text-lg text-muted-foreground leading-relaxed mb-8">
+              Créer un lieu où les enfants blessés par la vie peuvent retrouver leurs ailes. 
+              Un lieu qui ne guérit pas tout… mais qui donne le temps, l'amour et le souffle.
+            </p>
+          </SlideUp>
+          <FadeIn delay={0.3}>
+            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-soft">
+              <img 
+                src={missionImage} 
+                alt="Enfants partageant un repas ensemble à l'orphelinat" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Highlights Section */}
       <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
-          <h2 className="font-heading text-3xl lg:text-5xl font-bold text-center mb-12">
-            Ce que nous offrons
-          </h2>
+          <SlideUp>
+            <h2 className="font-heading text-3xl lg:text-5xl font-bold text-center mb-12">
+              Ce que nous offrons
+            </h2>
+          </SlideUp>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {highlights.map((item, index) => (
-              <Card key={index} className="gradient-card hover:shadow-float transition-all duration-300 border-0 overflow-hidden">
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="font-heading text-xl font-bold mb-3 text-primary">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <FadeIn key={index} delay={index * 0.15}>
+                <Card className="gradient-card hover:shadow-float transition-all duration-300 border-0 overflow-hidden h-full">
+                  <div className="relative h-48 overflow-hidden">
+                    <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="font-heading text-xl font-bold mb-3 text-primary">
+                      {item.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </FadeIn>
             ))}
           </div>
           <div className="text-center mt-12">
@@ -178,30 +189,34 @@ const Home = () => {
       {/* Story Section */}
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-6">
-              La légende du papillon
-            </h2>
-          </div>
-          <Card className="gradient-card border-0 shadow-soft overflow-hidden">
-            <div className="relative h-64 lg:h-80 overflow-hidden">
-              <img 
-                src={butterflyImage} 
-                alt="Papillon posé sur une main d'enfant" 
-                className="w-full h-full object-cover"
-              />
+          <SlideUp>
+            <div className="text-center mb-8">
+              <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-6">
+                La légende du papillon
+              </h2>
             </div>
-            <CardContent className="p-8 lg:p-12">
-              <p className="text-lg leading-relaxed text-muted-foreground italic">
-                On raconte qu'un enfant, dans un village proche, observait un papillon blessé qui refusait de s'envoler. 
-                Il avait perdu une aile. L'enfant le posa dans le creux de sa main, souffla doucement dessus — 
-                et le papillon trembla, puis battit son unique aile, comme pour dire : "Donne-moi juste un peu de temps."
-              </p>
-              <p className="text-lg leading-relaxed text-foreground mt-6 font-medium">
-                C'est de là qu'est née l'idée : créer un lieu où les enfants blessés par la vie peuvent retrouver leurs ailes.
-              </p>
-            </CardContent>
-          </Card>
+          </SlideUp>
+          <FadeIn delay={0.2}>
+            <Card className="gradient-card border-0 shadow-soft overflow-hidden">
+              <div className="relative h-64 lg:h-80 overflow-hidden">
+                <img 
+                  src={butterflyImage} 
+                  alt="Papillon posé sur une main d'enfant" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <CardContent className="p-8 lg:p-12">
+                <p className="text-lg leading-relaxed text-muted-foreground italic">
+                  On raconte qu'un enfant, dans un village proche, observait un papillon blessé qui refusait de s'envoler. 
+                  Il avait perdu une aile. L'enfant le posa dans le creux de sa main, souffla doucement dessus — 
+                  et le papillon trembla, puis battit son unique aile, comme pour dire : "Donne-moi juste un peu de temps."
+                </p>
+                <p className="text-lg leading-relaxed text-foreground mt-6 font-medium">
+                  C'est de là qu'est née l'idée : créer un lieu où les enfants blessés par la vie peuvent retrouver leurs ailes.
+                </p>
+              </CardContent>
+            </Card>
+          </FadeIn>
         </div>
       </section>
 

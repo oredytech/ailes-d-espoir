@@ -2,6 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, DollarSign, Package, Calendar, Shield, FileText } from "lucide-react";
 import { Link } from "react-router-dom";
+import { FadeIn, SlideUp } from "@/components/AnimatedSection";
+import donateImpactImage from "@/assets/donate-impact.jpg";
+import gratitudeImage from "@/assets/donate-gratitude.jpg";
 
 const Donate = () => {
   const donationTypes = [
@@ -64,25 +67,38 @@ const Donate = () => {
 
       {/* Donation Types Section */}
       <section className="container mx-auto px-4 py-20">
-        <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-12 text-center">
-          Comment donner ?
-        </h2>
+        <SlideUp>
+          <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-12 text-center">
+            Comment donner ?
+          </h2>
+        </SlideUp>
+        <FadeIn delay={0.2}>
+          <div className="relative mb-12 h-64 lg:h-80 rounded-2xl overflow-hidden shadow-soft max-w-4xl mx-auto">
+            <img 
+              src={donateImpactImage} 
+              alt="Impact des dons - mains solidaires" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </FadeIn>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {donationTypes.map((type, index) => (
-            <Card key={index} className="gradient-card border-0 shadow-soft hover:shadow-float transition-all duration-300">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 rounded-full bg-gradient-warm flex items-center justify-center mx-auto mb-6">
-                  <type.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="font-heading text-xl font-bold mb-4">{type.title}</h3>
-                <p className="text-muted-foreground mb-6 leading-relaxed">
-                  {type.description}
-                </p>
-                <Button asChild className="w-full">
-                  <Link to="/contact">{type.cta}</Link>
-                </Button>
-              </CardContent>
-            </Card>
+            <FadeIn key={index} delay={0.3 + index * 0.1}>
+              <Card className="gradient-card border-0 shadow-soft hover:shadow-float transition-all duration-300 h-full">
+                <CardContent className="p-8 text-center flex flex-col">
+                  <div className="w-16 h-16 rounded-full bg-gradient-warm flex items-center justify-center mx-auto mb-6">
+                    <type.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="font-heading text-xl font-bold mb-4">{type.title}</h3>
+                  <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">
+                    {type.description}
+                  </p>
+                  <Button asChild className="w-full">
+                    <Link to="/contact">{type.cta}</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </FadeIn>
           ))}
         </div>
       </section>
@@ -90,57 +106,76 @@ const Donate = () => {
       {/* Impact Section */}
       <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4">
-          <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-8 text-center">
-            L'impact de votre don
-          </h2>
-          <p className="text-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
-            Voici quelques exemples concrets de ce que vos dons permettent de réaliser
-          </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <SlideUp>
+            <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-8 text-center">
+              L'impact de votre don
+            </h2>
+            <p className="text-lg text-center text-muted-foreground mb-12 max-w-3xl mx-auto">
+              Voici quelques exemples concrets de ce que vos dons permettent de réaliser
+            </p>
+          </SlideUp>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mb-12">
             {impact.map((item, index) => (
-              <Card key={index} className="border-0 shadow-soft text-center hover:scale-105 transition-all duration-300">
-                <CardContent className="p-8">
-                  <div className="font-heading text-4xl font-bold text-primary mb-4">
-                    {item.amount}
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
-                </CardContent>
-              </Card>
+              <FadeIn key={index} delay={index * 0.1}>
+                <Card className="border-0 shadow-soft text-center hover:scale-105 transition-all duration-300 h-full">
+                  <CardContent className="p-8">
+                    <div className="font-heading text-4xl font-bold text-primary mb-4">
+                      {item.amount}
+                    </div>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {item.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </FadeIn>
             ))}
           </div>
+          <FadeIn delay={0.5}>
+            <div className="relative h-64 lg:h-80 rounded-2xl overflow-hidden shadow-soft max-w-4xl mx-auto">
+              <img 
+                src={gratitudeImage} 
+                alt="Enfants reconnaissants" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </FadeIn>
         </div>
       </section>
 
       {/* Trust Section */}
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-12 text-center">
-            Votre confiance est précieuse
-          </h2>
+          <SlideUp>
+            <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-12 text-center">
+              Votre confiance est précieuse
+            </h2>
+          </SlideUp>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card className="gradient-card border-0 shadow-soft">
-              <CardContent className="p-8">
-                <Shield className="w-12 h-12 text-secondary mb-4" />
-                <h3 className="font-heading text-xl font-bold mb-3">Sécurité des paiements</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Tous nos systèmes de paiement sont sécurisés. Vos données bancaires sont protégées 
-                  et nous ne conservons aucune information sensible.
-                </p>
-              </CardContent>
-            </Card>
+            <FadeIn delay={0.2}>
+              <Card className="gradient-card border-0 shadow-soft h-full">
+                <CardContent className="p-8">
+                  <Shield className="w-12 h-12 text-secondary mb-4" />
+                  <h3 className="font-heading text-xl font-bold mb-3">Sécurité des paiements</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Tous nos systèmes de paiement sont sécurisés. Vos données bancaires sont protégées 
+                    et nous ne conservons aucune information sensible.
+                  </p>
+                </CardContent>
+              </Card>
+            </FadeIn>
 
-            <Card className="gradient-card border-0 shadow-soft">
-              <CardContent className="p-8">
-                <FileText className="w-12 h-12 text-accent mb-4" />
-                <h3 className="font-heading text-xl font-bold mb-3">Transparence totale</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Nous publions des rapports annuels détaillés sur l'utilisation des fonds. 
-                  Chaque centime est utilisé pour le bien-être des enfants.
-                </p>
-              </CardContent>
-            </Card>
+            <FadeIn delay={0.3}>
+              <Card className="gradient-card border-0 shadow-soft h-full">
+                <CardContent className="p-8">
+                  <FileText className="w-12 h-12 text-accent mb-4" />
+                  <h3 className="font-heading text-xl font-bold mb-3">Transparence totale</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Nous publions des rapports annuels détaillés sur l'utilisation des fonds. 
+                    Chaque centime est utilisé pour le bien-être des enfants.
+                  </p>
+                </CardContent>
+              </Card>
+            </FadeIn>
           </div>
         </div>
       </section>
