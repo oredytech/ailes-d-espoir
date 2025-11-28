@@ -5,6 +5,12 @@ import { Heart, Users, GraduationCap, Home as HomeIcon, Video } from "lucide-rea
 import heroImage from "@/assets/hero-children.jpg";
 import heroImage2 from "@/assets/hero-children-2.jpg";
 import heroImage3 from "@/assets/hero-children-3.jpg";
+import missionImage from "@/assets/mission-daily-life.jpg";
+import housingImage from "@/assets/highlight-housing.jpg";
+import educationImage from "@/assets/highlight-education.jpg";
+import healthImage from "@/assets/highlight-health.jpg";
+import psychologyImage from "@/assets/highlight-psychology.jpg";
+import butterflyImage from "@/assets/story-butterfly.jpg";
 import useEmblaCarousel from "embla-carousel-react";
 import { useEffect } from "react";
 
@@ -32,18 +38,22 @@ const Home = () => {
     {
       title: "Hébergement sécurisé",
       description: "Un foyer chaleureux où chaque enfant trouve sa place et sa dignité.",
+      image: housingImage,
     },
     {
       title: "Éducation de qualité",
       description: "Scolarisation complète et accompagnement personnalisé pour chaque enfant.",
+      image: educationImage,
     },
     {
       title: "Santé & nutrition",
       description: "Suivi médical régulier et alimentation équilibrée pour grandir en bonne santé.",
+      image: healthImage,
     },
     {
       title: "Soutien psychologique",
       description: "Accompagnement émotionnel pour guérir les blessures et retrouver confiance.",
+      image: psychologyImage,
     },
   ];
 
@@ -120,11 +130,12 @@ const Home = () => {
             Créer un lieu où les enfants blessés par la vie peuvent retrouver leurs ailes. 
             Un lieu qui ne guérit pas tout… mais qui donne le temps, l'amour et le souffle.
           </p>
-          <div className="relative aspect-video bg-muted rounded-2xl overflow-hidden shadow-soft flex items-center justify-center">
-            <Video className="w-16 h-16 text-muted-foreground" />
-            <div className="absolute inset-0 flex items-center justify-center bg-black/20">
-              <p className="text-white font-semibold">Une journée chez Papillons (Vidéo à venir)</p>
-            </div>
+          <div className="relative aspect-video rounded-2xl overflow-hidden shadow-soft">
+            <img 
+              src={missionImage} 
+              alt="Enfants partageant un repas ensemble à l'orphelinat" 
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
       </section>
@@ -137,7 +148,14 @@ const Home = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {highlights.map((item, index) => (
-              <Card key={index} className="gradient-card hover:shadow-float transition-all duration-300 border-0">
+              <Card key={index} className="gradient-card hover:shadow-float transition-all duration-300 border-0 overflow-hidden">
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <CardContent className="p-6">
                   <h3 className="font-heading text-xl font-bold mb-3 text-primary">
                     {item.title}
@@ -161,12 +179,18 @@ const Home = () => {
       <section className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
-            <span className="text-6xl mb-4 inline-block animate-float-delayed">🦋</span>
             <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-6">
               La légende du papillon
             </h2>
           </div>
-          <Card className="gradient-card border-0 shadow-soft">
+          <Card className="gradient-card border-0 shadow-soft overflow-hidden">
+            <div className="relative h-64 lg:h-80 overflow-hidden">
+              <img 
+                src={butterflyImage} 
+                alt="Papillon posé sur une main d'enfant" 
+                className="w-full h-full object-cover"
+              />
+            </div>
             <CardContent className="p-8 lg:p-12">
               <p className="text-lg leading-relaxed text-muted-foreground italic">
                 On raconte qu'un enfant, dans un village proche, observait un papillon blessé qui refusait de s'envoler. 
