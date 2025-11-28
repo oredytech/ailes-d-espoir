@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-warm-brown text-white mt-20">
+  return <footer className="bg-warm-brown text-white mt-20">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <span className="text-3xl">🦋</span>
-              <h3 className="font-heading text-xl font-bold">Papillons</h3>
+              <h3 className="font-heading text-xl font-bold">​JIRANI</h3>
             </div>
             <p className="text-white/80 text-sm leading-relaxed">
               Un lieu où les enfants blessés par la vie peuvent retrouver leurs ailes.
@@ -82,8 +80,6 @@ const Footer = () => {
           <p>&copy; {new Date().getFullYear()} Orphelinat Papillons. Tous droits réservés.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
